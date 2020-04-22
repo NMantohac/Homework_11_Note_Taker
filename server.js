@@ -2,13 +2,6 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-const util = require("util");
-
-const databasePath = path.join(__dirname, "db/db.json");
-const dataJSON = require("./db/db.json");
-
-// UUID Random ID Generator
-const uuid = require("uuid/v4");
 
 // Express App and PORT
 const app = express();
@@ -19,36 +12,50 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-const notes = [];
-
 // HTML Routes - notes.html and index.html
 app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/notes.html"));
 })
 
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"));
 })
 
-// GET /api/notes
+// GET /api/notes Route - reads db.json file and returns the data array of objects in JSON format
 app.get("/api/notes", (req, res) => {
-    res.json(dataJSON);
+    fs.readFile("./db/db.json", "utf-8", (err, data) => {
+        if (err) throw err;
+
+        res.json(JSON.parse(data));
+    })
 })
 
-// POST /api/notes
+// POST /api/notes - creates a new object based on user input and adds it to db.json in JSON format 
 app.post("/api/notes", (req, res) => {
-    const newNote = req.body;
+    fs.readFile("./db/db.json", "utf-8", (err, response) => {
+        if (err) throw err;
+        
+        const notes = JSON.parse(response);
+        const newNote = req.body;
+        const newNoteId = notes.length + 1;
+        const noteData = {
+            id: newNoteId,
+            title: newNote.title,
+            text: newNote.text
+        };
 
-    console.log(newNote);
+        notes.push(noteData);
+        res.json(noteData);
+        console.log(noteData);
 
-    dataJSON.push(newNote);
-
-    res.json(newNote);
+        fs.writeFile("./db/db.json", JSON.stringify(notes, null, 2), (err) => {
+            if (err) throw err;
+            console.log("db.json file succesfully created!");
+        })
+    })
 })
 
-// DELETE /api/notes/:id
-// import { v4 as uuidv4} from "uuid";
-// uuidv4();
+// // DELETE /api/notes/:id
 
 // Server Port LISTEN
 app.listen(PORT, () => {
