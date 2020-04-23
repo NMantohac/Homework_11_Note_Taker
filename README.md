@@ -1,7 +1,8 @@
 # Homework_11_Note_Taker
 
 URL Links:
-  1) https://github.com/NMantohac/Homework_10_Team_Profile_Generator
+  1) GitHub: https://github.com/NMantohac/Homework_10_Team_Profile_Generator
+  2) Heroku (Deployed): https://rocky-mountain-40878.herokuapp.com/
   2) Overall Function (Local Host): 
   3) Overall Function (Heroku): 
   
@@ -49,3 +50,6 @@ URL Links:
   
   Note Taker - Notes Page w/ Deleted Note:
   ![Note Taker - Notes Page w/ Deleted Note:](https://puu.sh/FBfV3/931b4acaa8.png)
+  
+  Note Taker - /api/notes in JSON format:
+  ![Note Taker - /api/notes in JSON format:](https://puu.sh/FBfYB/a02a54d9d5.png)
