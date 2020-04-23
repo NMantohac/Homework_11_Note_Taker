@@ -32,10 +32,11 @@ app.get("/api/notes", (req, res) => {
 
 // POST /api/notes - creates a new object based on user input and adds it to db.json in JSON format 
 app.post("/api/notes", (req, res) => {
-    fs.readFile("./db/db.json", "utf-8", (err, response) => {
+    fs.readFile("./db/db.json", "utf-8", (err, data) => {
         if (err) throw err;
         
-        const notes = JSON.parse(response);
+        const notes = JSON.parse(data);
+
         const newNote = req.body;
         const newNoteId = notes.length + 1;
         const noteData = {
@@ -48,14 +49,37 @@ app.post("/api/notes", (req, res) => {
         res.json(noteData);
         console.log(noteData);
 
-        fs.writeFile("./db/db.json", JSON.stringify(notes, null, 2), (err) => {
+        fs.writeFile("./db/db.json", JSON.stringify(notes, null, 2), err => {
             if (err) throw err;
             console.log("db.json file succesfully created!");
         })
     })
 })
 
-// // DELETE /api/notes/:id
+// DELETE /api/notes/:id - deletes the note object based on specific id and returns the rewritten db.json in JSON format
+app.delete("/api/notes/:id", (req, res) => {
+    const noteID = req.params.id;
+
+    fs.readFile("./db/db.json", "utf-8", (err, data) => {
+        if (err) throw err;
+
+        const notes = JSON.parse(data);
+
+        notes.forEach((element, index) => {
+            if (parseInt(element.id) === parseInt(noteID)) {
+                notes.splice(index, 1);
+            }
+        });
+
+        const notesSTR = JSON.stringify(notes, null, 2)
+
+        fs.writeFile("./db/db.json", notesSTR, err => {
+            if (err) throw err;
+            res.json(JSON.parse(notesSTR));
+            console.log("db.json file succesfully rewritten!");
+        })
+    })
+})
 
 // Server Port LISTEN
 app.listen(PORT, () => {
