@@ -3,8 +3,8 @@
 URL Links:
   1) GitHub: https://github.com/NMantohac/Homework_10_Team_Profile_Generator
   2) Heroku (Deployed): https://rocky-mountain-40878.herokuapp.com/
-  2) Overall Function (Local Host): https://drive.google.com/file/d/1SmFssps27f-KKAYm9mc1i99Vw9ePoh5G/view
-  3) Overall Function (Heroku): https://drive.google.com/file/d/1vV204FjuyUvM1d4jYPMWAQA4gunzkMOJ/view
+  2) Overall Function (Local Host): https://drive.google.com/file/d/1dgDlxZeQAEMhZ15P_rA95UVFhmLASkQf/view
+  3) Overall Function (Heroku): https://drive.google.com/file/d/1BR6-PoZQsXH4nhCHdWkT9Jn1tOmRjEyO/view
   
 ## Description:
   - A note taker that allows the user to write, save, and delete notes from the webpage. There can be multiple notes and the written
