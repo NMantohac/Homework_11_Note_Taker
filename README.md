@@ -1,7 +1,7 @@
 # Homework_11_Note_Taker
 
 URL Links:
-  1) GitHub: https://github.com/NMantohac/Homework_11_Note_Taker
+  1) GitHub: https://github.com/NMantohac/Note-Taker
   2) Heroku (Deployed): https://rocky-mountain-40878.herokuapp.com/
   2) Overall Function (Local Host): https://drive.google.com/file/d/1dgDlxZeQAEMhZ15P_rA95UVFhmLASkQf/view
   3) Overall Function (Heroku): https://drive.google.com/file/d/1BR6-PoZQsXH4nhCHdWkT9Jn1tOmRjEyO/view
